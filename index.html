@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Official website of B4 Esports - Premium PUBG MOBILE Esports Team. Explore our roster, tournament achievements, and history since 2019.">
+    <meta name="keywords" content="B4 Esports, PUBG Mobile, Esports Team, Gaming, B4 Ghazi, B4 Beast, B4 BigDaddy, B4 RG">
+    <meta name="author" content="B4 Esports">
+    <title>B4 ESPORTS | Official PUBG MOBILE Team</title>
+    
+    <!-- Google Fonts for Gaming Aesthetic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Link to Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark-mode">
+
+    <!-- Scroll Progress Indicator -->
+    <div id="scroll-progress-container">
+        <div id="scroll-progress-bar"></div>
+    </div>
+
+    <!-- Cinematic Loading Screen -->
+    <div id="loader-screen" class="active">
+        <div class="loader-bg-ambient"></div>
+        <div class="loader-smoke-container" id="loader-smoke"></div>
+        <div class="loader-content">
+            <div class="logo-loader-container">
+                <img src="assets/logo.jpg" alt="B4 Esports Logo" class="loader-logo">
+                <div class="loader-glow-ring"></div>
+            </div>
+            
+            <div class="loader-status">
+                <div class="loader-bar-container">
+                    <div class="loader-bar-fill" id="loader-progress"></div>
+                </div>
+                <div class="loader-text-row">
+                    <span class="loader-percentage" id="loader-pct">0%</span>
+                    <span class="loader-action" id="loader-action-txt">INITIALIZING SYSTEMS...</span>
+                </div>
+            </div>
+
+            <!-- Web Audio Intro Control -->
+            <button id="sound-toggle-btn" class="sound-toggle" aria-label="Toggle sound">
+                <svg id="sound-on-icon" class="hidden" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-4h2v4zm0-6H9V8h2v2zm4 6h-2v-4h2v4zm0-6h-2V8h2v2z"/>
+                </svg>
+                <svg id="sound-off-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM12 4L9.91 6.09 12 8.18V4zm-8 8c0 4.42 3.58 8 8 8V12H4zm8-10C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.18V19.8c3.27-.68 5.8-3.2 6.48-6.48h-1.01c-.65 2.73-2.74 4.82-5.47 5.47v-.61zm0-12v1.62c2.73.65 4.82 2.74 5.47 5.47h1.01c-.68-3.28-3.21-5.8-6.48-6.48v-.61z"/>
+                </svg>
+                <span id="sound-status-label">AUDIO ENABLED</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header id="main-header">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo-link">
+                <img src="assets/logo.jpg" alt="B4 Esports Mini Logo" class="nav-logo">
+                <span class="nav-brand">B4 <span class="text-red">ESPORTS</span></span>
+            </a>
+            
+            <nav id="desktop-nav">
+                <ul>
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#roster" class="nav-link">Roster</a></li>
+                    <li><a href="#achievements" class="nav-link">Achievements</a></li>
+                    <li><a href="#history" class="nav-link">History</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-extra">
+                <!-- Simulated Live Fan Counter -->
+                <div class="live-counter-badge">
+                    <span class="live-dot"></span>
+                    <span class="live-label">LIVE: <span id="visitor-count">1,482</span> fans online</span>
+                </div>
+
+                <!-- Hamburger menu for mobile -->
+                <button id="menu-toggle" class="mobile-menu-btn" aria-label="Toggle menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Navigation -->
+        <div id="mobile-drawer" class="mobile-drawer">
+            <ul class="mobile-nav-links">
+                <li><a href="#home" class="mobile-link">Home</a></li>
+                <li><a href="#roster" class="mobile-link">Roster</a></li>
+                <li><a href="#achievements" class="mobile-link">Achievements</a></li>
+                <li><a href="#history" class="mobile-link">History</a></li>
+                <li><a href="#contact" class="mobile-link">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main>
+        
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <canvas id="particle-canvas" class="hero-particles"></canvas>
+            <div class="hero-smoke-overlay"></div>
+            
+            <div class="hero-content">
+                <div class="hero-logo-box fade-in-up">
+                    <img src="assets/logo.jpg" alt="B4 Esports Large Logo" class="hero-logo-img">
+                </div>
+                
+                <h1 class="hero-title fade-in-up delay-1">
+                    PUBG MOBILE <span class="glow-text text-red">ESPORTS TEAM</span>
+                </h1>
+                
+                <p class="hero-subtitle fade-in-up delay-2">
+                    SINCE <span class="text-red">2019</span>
+                </p>
+                
+                <div class="hero-actions fade-in-up delay-3">
+                    <a href="#roster" class="btn btn-primary btn-glow ripple-btn">
+                        <span>EXPLORE TEAM</span>
+                        <div class="btn-glow-effect"></div>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hero-scroll-indicator">
+                <div class="scroll-mouse">
+                    <div class="scroll-wheel"></div>
+                </div>
+                <span class="scroll-label">SCROLL TO DISCOVER</span>
+            </div>
+        </section>
+
+        <!-- Team Roster Section -->
+        <section id="roster" class="roster-section scroll-reveal">
+            <div class="section-header">
+                <span class="bg-section-text">LINEUP</span>
+                <h2 class="section-title">THE <span class="text-red">ROSTER</span></h2>
+                <div class="title-bar"></div>
+            </div>
+
+            <div class="roster-grid">
+                <!-- Player 1: B4 GHAZI -->
+                <div class="player-card spotlight-card">
+                    <div class="card-border-glow"></div>
+                    <div class="card-inner">
+                        <div class="player-img-wrapper">
+                            <img src="assets/player4_rg.jpg" alt="B4 GHAZI Image" class="player-image">
+                            <div class="card-shine"></div>
+                        </div>
+                        <div class="player-info">
+                            <h3 class="player-ign">B4 GHAZI</h3>
+                            <div class="player-role-badge">IGL</div>
+                            
+                            <!-- Reveal details on hover -->
+                            <div class="player-stats">
+                                <span class="stat-line"><strong>Primary Role:</strong> In-Game Leader</span>
+                                <span class="stat-line"><strong>Fav Weapon:</strong> M416 & GRENADES</span>
+                                <span class="stat-line"><strong>Specialty:</strong> Strategic Rotations</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Player 2: B4 BEAST -->
+                <div class="player-card spotlight-card">
+                    <div class="card-border-glow"></div>
+                    <div class="card-inner">
+                        <div class="player-img-wrapper">
+                            <img src="assets/player3_bigdaddy.jpg" alt="B4 BEAST Image" class="player-image">
+                            <div class="card-shine"></div>
+                        </div>
+                        <div class="player-info">
+                            <h3 class="player-ign">B4 BEAST</h3>
+                            <div class="player-role-badge">Fragger</div>
+                            
+                            <!-- Reveal details on hover -->
+                            <div class="player-stats">
+                                <span class="stat-line"><strong>Primary Role:</strong> Entry Fragger</span>
+                                <span class="stat-line"><strong>Fav Weapon:</strong> S12K & AUG</span>
+                                <span class="stat-line"><strong>Specialty:</strong> Close Range Assault</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Player 3: B4 BIGDADDY -->
+                <div class="player-card spotlight-card">
+                    <div class="card-border-glow"></div>
+                    <div class="card-inner">
+                        <div class="player-img-wrapper">
+                            <img src="assets/player2_beast.jpg" alt="B4 BIGDADDY Image" class="player-image">
+                            <div class="card-shine"></div>
+                        </div>
+                        <div class="player-info">
+                            <h3 class="player-ign">B4 BIGDADDY</h3>
+                            <div class="player-role-badge">Supporter</div>
+                            
+                            <!-- Reveal details on hover -->
+                            <div class="player-stats">
+                                <span class="stat-line"><strong>Primary Role:</strong> Support / Utility</span>
+                                <span class="stat-line"><strong>Fav Weapon:</strong> M416 & GRENADES</span>
+                                <span class="stat-line"><strong>Specialty:</strong> Cover Fire & Assist</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Player 4: B4 RG -->
+                <div class="player-card spotlight-card">
+                    <div class="card-border-glow"></div>
+                    <div class="card-inner">
+                        <div class="player-img-wrapper">
+                            <img src="assets/player1_ghazi.jpg" alt="B4 RG Image" class="player-image">
+                            <div class="card-shine"></div>
+                        </div>
+                        <div class="player-info">
+                            <h3 class="player-ign">B4 RG</h3>
+                            <div class="player-role-badge">Scouter</div>
+                            
+                            <div class="player-stats">
+                                <span class="stat-line"><strong>Primary Role:</strong> Scout / Sniper</span>
+                                <span class="stat-line"><strong>Fav Weapon:</strong> S12K & M416</span>
+                                <span class="stat-line"><strong>Specialty:</strong> Intel Gathering</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="player-card spotlight-card">
+                    <div class="card-border-glow"></div>
+                    <div class="card-inner">
+                        <div class="player-img-wrapper">
+                            <img src="assets/player1_ghazi.jpg" alt="B4 RG Image" class="player-image">
+                            <div class="card-shine"></div>
+                        </div>
+                        <div class="player-info">
+                            <h3 class="player-ign">B4 BUNTAY</h3>
+                            <div class="player-role-badge">Support</div>
+                            
+                            <div class="player-stats">
+                                <span class="stat-line"><strong>Primary Role:</strong> Scout / Sniper</span>
+                                <span class="stat-line"><strong>Fav Weapon:</strong> S12K & M416</span>
+                                <span class="stat-line"><strong>Specialty:</strong> Intel Gathering</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Squad Group Banner -->
+            <div class="squad-banner-container scroll-reveal-item">
+                <div class="squad-flex-layout">
+                    <!-- Left: Squad Story Text -->
+                    <div class="squad-story-box">
+                        <div class="squad-accent-tag">ABOUT THE TEAM</div>
+                        <h3 class="squad-story-title">TEAM B4 <span class="text-red">SQUAD</span></h3>
+                        <div class="title-bar-left"></div>
+                        <p class="squad-story-text">
+                            Five friends came together with nothing but passion. Years later, we're still standing side by side, chasing the same dream with even greater determination. Legends aren't born overnight, they're built through loyalty, hard work, and countless battles.
+                        </p>
+                        <p class="squad-story-welcome text-red glow-text">
+                            Welcome to B4 Esports.
+                        </p>
+                    </div>
+
+                    <!-- Right: Squad Photo Wrapper (Spotlight Effect) -->
+                    <div class="squad-image-wrapper spotlight-card">
+                        <div class="card-border-glow"></div>
+                        <img src="assets/squad.jpg" alt="Team B4 Squad Photo" class="squad-image">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section id="achievements" class="achievements-section scroll-reveal">
+            <div class="section-header">
+                <span class="bg-section-text">VICTORIES</span>
+                <h2 class="section-title">THE <span class="text-red">TIMELINE</span></h2>
+                <div class="title-bar"></div>
+            </div>
+
+            <div class="timeline-container">
+                <div class="timeline-line">
+                    <div class="timeline-progress"></div>
+                </div>
+
+                <!-- Achievement 1 -->
+                <div class="timeline-item left scroll-reveal-item">
+                    <div class="timeline-dot">
+                        <span class="medal-emoji">🥇</span>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2020</div>
+                        <h3 class="timeline-title">PMPC 2020</h3>
+                        <p class="timeline-desc">Secured a spot in the Grand Finals after displaying dominating tactical performances throughout the season.</p>
+                        <span class="achievement-badge badge-gold">FINALS</span>
+                    </div>
+                </div>
+
+                <!-- Achievement 2 -->
+                <div class="timeline-item right scroll-reveal-item">
+                    <div class="timeline-dot">
+                        <span class="medal-emoji">🥈</span>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2021</div>
+                        <h3 class="timeline-title">PMNC 2021</h3>
+                        <p class="timeline-desc">A stellar run in the PUBG MOBILE National Championship, finishing in the highly competitive Semi-Finals stage.</p>
+                        <span class="achievement-badge badge-silver">SEMI FINALS</span>
+                    </div>
+                </div>
+
+                <!-- Achievement 3 -->
+                <div class="timeline-item left scroll-reveal-item">
+                    <div class="timeline-dot">
+                        <span class="medal-emoji">🏆</span>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2022 - 2023</div>
+                        <h3 class="timeline-title">LAN Event Multan</h3>
+                        <p class="timeline-desc">Brought our best gameplay in front of a live stadium audience, securing a Grand Finalist slot in Multan.</p>
+                        <span class="achievement-badge badge-red">FINALS</span>
+                    </div>
+                </div>
+
+                <!-- Achievement 4 -->
+                <div class="timeline-item right scroll-reveal-item">
+                    <div class="timeline-dot">
+                        <span class="medal-emoji">🥉</span>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2025</div>
+                        <h3 class="timeline-title">Zong Championship 2025</h3>
+                        <p class="timeline-desc">Fought against top-tier teams in the region, solidifying a podium-level performance in the Semi-Finals.</p>
+                        <span class="achievement-badge badge-bronze">SEMI FINALS</span>
+                    </div>
+                </div>
+
+                <!-- Achievement 5 -->
+                <div class="timeline-item left scroll-reveal-item">
+                    <div class="timeline-dot">
+                        <span class="medal-emoji">🏆</span>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2025</div>
+                        <h3 class="timeline-title">PMCB 2025</h3>
+                        <p class="timeline-desc">Outstanding play in the regional brackets, locking in the Semi-Finalist rank in high style.</p>
+                        <span class="achievement-badge badge-red">SEMI FINALS</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tournament History Section -->
+        <section id="history" class="history-section scroll-reveal">
+            <div class="section-header">
+                <span class="bg-section-text">RECORDS</span>
+                <h2 class="section-title">TOURNAMENT <span class="text-red">HISTORY</span></h2>
+                <div class="title-bar"></div>
+            </div>
+
+            <div class="table-container">
+                <table class="glass-table">
+                    <thead>
+                        <tr>
+                            <th>Tournament</th>
+                            <th>Result</th>
+                            <th>Year</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="tournament-name"><span class="table-dot"></span> PMPC</td>
+                            <td><span class="status-pill status-finalist">Finalist</span></td>
+                            <td class="table-year">2020</td>
+                        </tr>
+                        <tr>
+                            <td class="tournament-name"><span class="table-dot"></span> PMNC</td>
+                            <td><span class="status-pill status-semis">Semi Finals</span></td>
+                            <td class="table-year">2021</td>
+                        </tr>
+                        <tr>
+                            <td class="tournament-name"><span class="table-dot"></span> LAN Event MUX</td>
+                            <td><span class="status-pill status-finalist">Finalist</span></td>
+                            <td class="table-year">2022</td>
+                        </tr>
+                        <tr>
+                            <td class="tournament-name"><span class="table-dot"></span> Zong Championship</td>
+                            <td><span class="status-pill status-semis">Semi Finals</span></td>
+                            <td class="table-year">2025</td>
+                        </tr>
+                        <tr>
+                            <td class="tournament-name"><span class="table-dot"></span> PMCB</td>
+                            <td><span class="status-pill status-semis">Semi Finals</span></td>
+                            <td class="table-year">2025</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section scroll-reveal">
+            <div class="section-header">
+                <span class="bg-section-text">JOIN US</span>
+                <h2 class="section-title">CONNECT <span class="text-red">WITH B4</span></h2>
+                <div class="title-bar"></div>
+            </div>
+
+            <div class="contact-grid" style="display: flex; justify-content: center;">
+                <!-- Instagram Card -->
+                <a href="https://www.instagram.com/b4esportspk/" class="contact-card spotlight-card" target="_blank" rel="noopener noreferrer" style="max-width: 420px; width: 100%;">
+                    <div class="card-border-glow"></div>
+                    <div class="contact-icon-box instagram-box">
+                        <svg class="contact-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                    </div>
+                    <h3 class="contact-title">Instagram</h3>
+                    <p class="contact-handle">@b4esportspk</p>
+                    <span class="contact-action-btn">Follow Team <span class="arrow">&rarr;</span></span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-top">
+                <img src="assets/logo.jpg" alt="B4 Esports Logo Footer" class="footer-logo">
+                <span class="footer-brand">B4 <span class="text-red">ESPORTS</span></span>
+            </div>
+            <p class="footer-desc">A premium competitive organization establishing dominance in mobile gaming arenas since 2019.</p>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2026 B4 Esports. All rights reserved.</p>
+                <p class="credits">Made with passion for <span class="text-red">PUBG MOBILE</span>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top-btn" aria-label="Scroll to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
+    <!-- Include JavaScript -->
+    <script src="app.js"></script>
+</body>
+</html>
